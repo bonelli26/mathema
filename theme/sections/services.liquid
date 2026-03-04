@@ -1,0 +1,74 @@
+<section class="services">
+  <div class="services-header">
+    {% if section.settings.section_label != blank %}
+      <p class="section-label">{{ section.settings.section_label }}</p>
+    {% endif %}
+    {% if section.settings.section_title != blank %}
+      <h2 class="section-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+  </div>
+  <div class="services-grid">
+    {% for block in section.blocks %}
+      <div class="service-card">
+        {% if block.settings.image %}
+          <img src="{{ block.settings.image | img_url: '700x' }}" alt="{{ block.settings.name | escape }}" />
+        {% endif %}
+        <div class="service-overlay">
+          <h3 class="service-name">{{ block.settings.name }}</h3>
+          <p class="service-desc">{{ block.settings.description }}</p>
+          {% if block.settings.link_url != blank %}
+            <a href="{{ block.settings.link_url }}" class="service-link">{{ block.settings.link_text | default: 'Ver más →' }}</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% if section.settings.banner_image != blank %}
+  <div class="banner">
+    <div class="banner-bg">
+      <img src="{{ section.settings.banner_image | img_url: '1600x' }}" alt="{{ section.settings.banner_alt | escape }}" />
+    </div>
+    <div class="banner-content">
+      {% if section.settings.banner_big != blank %}<span class="banner-big">{{ section.settings.banner_big }}</span>{% endif %}
+      {% if section.settings.banner_sub != blank %}<span class="banner-sub">{{ section.settings.banner_sub }}</span>{% endif %}
+      <br/>
+      {% if section.settings.banner_cta_text != blank %}
+        <a href="{{ section.settings.banner_cta_url }}" class="banner-cta">{{ section.settings.banner_cta_text }}</a>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Services",
+  "settings": [
+    { "type": "text", "id": "section_label", "label": "Section label", "default": "Lo que hacemos" },
+    { "type": "text", "id": "section_title", "label": "Section title", "default": "Nuestros Servicios" },
+    { "type": "image_picker", "id": "banner_image", "label": "Banner image" },
+    { "type": "text", "id": "banner_alt", "label": "Banner alt text" },
+    { "type": "text", "id": "banner_big", "label": "Banner big text", "default": "¡Queremos" },
+    { "type": "text", "id": "banner_sub", "label": "Banner sub text", "default": "cambiar tu vida!" },
+    { "type": "text", "id": "banner_cta_text", "label": "Banner CTA text", "default": "Agenda tu asesoría" },
+    { "type": "text", "id": "banner_cta_url", "label": "Banner CTA URL" }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "link_text", "label": "Link text", "default": "Ver más →" },
+        { "type": "text", "id": "link_url", "label": "Link URL" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Default", "category": "Services" }
+  ]
+}
+{% endschema %}

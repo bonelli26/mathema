@@ -1,0 +1,100 @@
+<div class="service-card" style="cursor:pointer;" onclick="location.href='{{ service_url | default: '#' }}';">
+  <div class="service-header">
+    <h3 class="service-title">{{ service_title }}</h3>
+    <span class="service-icon">→</span>
+  </div>
+  <p class="service-desc">{{ service_description }}</p>
+  {% if service_price %}
+    <div class="service-price">Desde {{ service_price }}</div>
+  {% endif %}
+</div>
+
+<style>
+  .service-card {
+    background: var(--cream);
+    padding: 32px 24px;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .service-card:hover {
+    background: var(--dark);
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px rgba(44, 26, 14, 0.15);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+  }
+
+  .service-card:hover .service-title,
+  .service-card:hover .service-desc,
+  .service-card:hover .service-icon {
+    color: var(--cream);
+  }
+
+  .service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--dark);
+    margin: 0;
+    flex: 1;
+  }
+
+  .service-icon {
+    font-size: 20px;
+    color: var(--terracota);
+    transition: color 0.3s;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--gray);
+    margin: 0 0 12px 0;
+  }
+
+  .service-price {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-top: auto;
+  }
+
+  @media (max-width: 768px) {
+    .service-card {
+      padding: 24px 16px;
+    }
+
+    .service-title {
+      font-size: 20px;
+    }
+  }
+</style>

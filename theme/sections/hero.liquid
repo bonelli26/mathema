@@ -1,0 +1,83 @@
+<div class="hero">
+  {% for block in section.blocks %}
+    <div class="hero-slide {% if forloop.first %}active{% endif %}">
+      {% if block.settings.image %}
+        <img src="{{ block.settings.image | img_url: '1600x' }}" alt="{{ block.settings.alt_text | escape }}" />
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <div class="hero-content">
+    {% if section.settings.eyebrow_text != blank %}
+      <p class="hero-eyebrow fade-up">{{ section.settings.eyebrow_text }}</p>
+    {% endif %}
+    {% if section.settings.title_before != blank %}
+      <h1 class="hero-title fade-up delay-1">
+        {{ section.settings.title_before }}
+        {% if section.settings.title_highlight != blank %}<span>{{ section.settings.title_highlight }}</span>{% endif %}
+      </h1>
+    {% endif %}
+    {% if section.settings.cta_text != blank %}
+      <a href="{{ section.settings.cta_url }}" class="hero-cta fade-up delay-2">{{ section.settings.cta_text }}</a>
+    {% endif %}
+  </div>
+
+  <button class="hero-arrow prev" onclick="changeSlide(-1)">&#8592;</button>
+  <button class="hero-arrow next" onclick="changeSlide(1)">&#8594;</button>
+
+  <div class="hero-dots">
+    {% for block in section.blocks %}
+      <button class="hero-dot {% if forloop.first %}active{% endif %}" onclick="goSlide({{ forloop.index0 }})"></button>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  // Hero Slideshow
+  let current = 0;
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots   = document.querySelectorAll('.hero-dot');
+
+  function goSlide(n) {
+    if (slides.length === 0) return;
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function changeSlide(dir) { 
+    goSlide(current + dir); 
+  }
+
+  if (slides.length > 0) {
+    setInterval(() => changeSlide(1), 5000);
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow", "default": "Interiorismo · Arquitectura · Construcción" },
+    { "type": "text", "id": "title_before", "label": "Title before highlight", "default": "Tu espacio," },
+    { "type": "text", "id": "title_highlight", "label": "Highlighted title", "default": "Transformado" },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Ver proyectos" },
+    { "type": "text", "id": "cta_url", "label": "CTA URL" }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Background image" },
+        { "type": "text", "id": "alt_text", "label": "Alt text" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Default", "category": "Hero" }
+  ]
+}
+{% endschema %}

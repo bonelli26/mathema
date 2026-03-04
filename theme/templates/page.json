@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero"
+    },
+    "services": {
+      "type": "services"
+    },
+    "projects": {
+      "type": "projects"
+    },
+    "asesorias": {
+      "type": "asesorias"
+    },
+    "instagram": {
+      "type": "instagram"
+    }
+  },
+  "order": [
+    "hero",
+    "services",
+    "projects",
+    "asesorias",
+    "instagram"
+  ]
+}

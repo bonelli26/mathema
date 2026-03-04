@@ -1,0 +1,69 @@
+<section class="shop-section" id="servicios-compra">
+  <div class="shop-header">
+    {% if section.settings.section_label != blank %}
+      <p class="section-label">{{ section.settings.section_label }}</p>
+    {% endif %}
+    {% if section.settings.section_title != blank %}
+      <h2 class="section-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+  </div>
+  <div class="shop-grid">
+    {% for block in section.blocks %}
+      <div class="shop-card">
+        <div class="shop-card-img">
+          {% if block.settings.image %}
+            <img src="{{ block.settings.image | img_url: '600x' }}" alt="{{ block.settings.name | escape }}" />
+          {% endif %}
+          {% if block.settings.badge_text != blank %}
+            <span class="shop-badge">{{ block.settings.badge_text }}</span>
+          {% endif %}
+        </div>
+        <div class="shop-card-body">
+          <h3 class="shop-card-name">{{ block.settings.name }}</h3>
+          <p class="shop-card-desc">{{ block.settings.description }}</p>
+          {% if block.settings.price_old or block.settings.price_new %}
+            <div class="shop-price-row">
+              {% if block.settings.price_old %}
+                <span class="shop-price-old">{{ block.settings.price_old }}</span>
+              {% endif %}
+              {% if block.settings.price_new %}
+                <span class="shop-price-new">{{ block.settings.price_new }}</span>
+              {% endif %}
+            </div>
+          {% endif %}
+          {% if block.settings.button_text != blank %}
+            <button class="btn-add">{{ block.settings.button_text }}</button>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Asesorias",
+  "settings": [
+    { "type": "text", "id": "section_label", "label": "Section label", "default": "Servicios" },
+    { "type": "text", "id": "section_title", "label": "Section title", "default": "Asesorías Mathema" }
+  ],
+  "blocks": [
+    {
+      "type": "asesoria",
+      "name": "Asesoría",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "badge_text", "label": "Badge text" },
+        { "type": "text", "id": "price_old", "label": "Old price" },
+        { "type": "text", "id": "price_new", "label": "New price" },
+        { "type": "text", "id": "button_text", "label": "Button text", "default": "Agregar al carrito" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Default", "category": "Asesorias" }
+  ]
+}
+{% endschema %}

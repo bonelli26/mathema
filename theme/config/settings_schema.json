@@ -1,0 +1,256 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Quentin custom theme",
+    "theme_version": "1.0",
+    "theme_author": "Josh Kirk",
+    "theme_documentation_url": "https:\/\/shopify.dev\/themes\/tools\/cli",
+    "theme_support_url": "https:\/\/support.shopify.com\/"
+  },
+  {
+    "name": "t:settings_schema.favicon.name",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "t:settings_schema.favicon.settings.favicon.label",
+        "info": "t:settings_schema.favicon.settings.favicon.info"
+      }
+    ]
+  },
+  {
+    "name": "Social share image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Social share image"
+      }
+    ]
+  },
+  {
+    "name": "Global fields",
+    "settings": [
+      {
+        "type": "text",
+        "id": "email",
+        "label": "Email"
+      },
+      {
+        "type": "text",
+        "id": "telefono",
+        "label": "Telefono"
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_list_id",
+        "label": "Klaviyo list ID"
+      },
+      {
+        "type": "text",
+        "id": "success_text",
+        "label": "Email capture success text"
+      }
+    ]
+  },
+  {
+    "name": "Header Links",
+    "settings": [
+      {
+        "type": "text",
+        "id": "header_copy_1",
+        "label": "Header Copy 1"
+      },
+      {
+        "type": "url",
+        "id": "header_link_1",
+        "label": "Header link 1"
+      },
+      {
+        "type": "text",
+        "id": "header_copy_2",
+        "label": "Header Copy 2"
+      },
+      {
+        "type": "url",
+        "id": "header_link_2",
+        "label": "Header link 2"
+      },
+      {
+        "type": "text",
+        "id": "header_copy_3",
+        "label": "Header Copy 3"
+      },
+      {
+        "type": "url",
+        "id": "header_link_3",
+        "label": "Header link 3"
+      },
+      {
+        "type": "text",
+        "id": "header_copy_4",
+        "label": "Header Copy 4"
+      },
+      {
+        "type": "url",
+        "id": "header_link_4",
+        "label": "Header link 4"
+      },
+      {
+        "type": "text",
+        "id": "header_copy_5",
+        "label": "Header Copy 5"
+      },
+      {
+        "type": "url",
+        "id": "header_link_5",
+        "label": "Header link 5"
+      }
+    ]
+  },
+  {
+    "name": "Social Media Links",
+    "settings": [
+      {
+        "type": "text",
+        "id": "instagram_url",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "facebook_url",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "tiktok_url",
+        "label": "TikTok"
+      }
+    ]
+  },
+  {
+    "name": "Pencil Bar",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "pencil_bar_message",
+        "label": "Pencil Bar Message"
+      }
+    ]
+  },
+  {
+    "name": "Footer Links",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sitio_one_label",
+        "label": "Sitio one"
+      },
+      {
+        "type": "text",
+        "id": "sitio_one_url",
+        "label": "Sitio one link"
+      },
+      {
+        "type": "text",
+        "id": "sitio_two_label",
+        "label": "Sitio two"
+      },
+      {
+        "type": "text",
+        "id": "sitio_two_url",
+        "label": "Sitio two link"
+      },
+      {
+        "type": "text",
+        "id": "sitio_three_label",
+        "label": "Sitio three"
+      },
+      {
+        "type": "text",
+        "id": "sitio_three_url",
+        "label": "Sitio three link"
+      },
+      {
+        "type": "text",
+        "id": "coffee_one_label",
+        "label": "Coffee one"
+      },
+      {
+        "type": "text",
+        "id": "coffee_one_url",
+        "label": "Coffee one link"
+      },
+      {
+        "type": "text",
+        "id": "coffee_two_label",
+        "label": "Coffee two"
+      },
+      {
+        "type": "text",
+        "id": "coffee_two_url",
+        "label": "Coffee two link"
+      },
+      {
+        "type": "text",
+        "id": "coffee_three_label",
+        "label": "Coffee three"
+      },
+      {
+        "type": "text",
+        "id": "coffee_three_url",
+        "label": "Coffee three link"
+      },
+      {
+        "type": "text",
+        "id": "coffee_four_label",
+        "label": "Coffee four"
+      },
+      {
+        "type": "text",
+        "id": "coffee_four_url",
+        "label": "Coffee four link"
+      },
+      {
+        "type": "text",
+        "id": "coffee_five_label",
+        "label": "Coffee five"
+      },
+      {
+        "type": "text",
+        "id": "coffee_five_url",
+        "label": "Coffee five link"
+      },
+      {
+        "type": "text",
+        "id": "privacy",
+        "label": "Privacy"
+      },
+      {
+        "type": "url",
+        "id": "privacy_url",
+        "label": "Privacy Link"
+      },
+      {
+        "type": "text",
+        "id": "terms",
+        "label": "Terms"
+      },
+      {
+        "type": "url",
+        "id": "terms_url",
+        "label": "Terms Link"
+      },
+      {
+        "type": "text",
+        "id": "faqs",
+        "label": "FAQs"
+      },
+      {
+        "type": "url",
+        "id": "faqs_url",
+        "label": "FAQs Link"
+      }
+    ]
+  }
+]

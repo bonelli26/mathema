@@ -1,0 +1,76 @@
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-main" style="color:var(--cream);">{{ shop.name }}</div>
+      <div class="logo-sub" style="color:var(--accent); margin-bottom:16px;">Interiorismo · Construcción</div>
+      <p>Tu nuevo espacio comienza con inspiración. Suscríbete y recibe ideas exclusivas, descuentos especiales y novedades de nuestros servicios.</p>
+      <div class="footer-social" style="margin-top:24px;">
+        {% if shop.instagram %}
+          <a href="https://instagram.com/{{ shop.instagram }}" class="social-btn" aria-label="Instagram" target="_blank">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        {% endif %}
+        <a href="{{ shop.url }}" class="social-btn" aria-label="Facebook" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="{{ routes.root_url }}">Inicio</a></li>
+        <li><a href="{{ routes.collections_url }}">Proyectos</a></li>
+        <li><a href="/pages/servicios">Servicios</a></li>
+        <li><a href="/pages/contacto">Contacto</a></li>
+        <li><a href="/pages/politica-de-privacidad">Política de Privacidad</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="/collections/asesorias">Asesorías</a></li>
+        <li><a href="/collections/proyectos-integrales">Proyecto Integral</a></li>
+        <li><a href="/collections/residencial">Residencial</a></li>
+        <li><a href="/collections/retail">Retail</a></li>
+        <li><a href="/collections/construccion">Construcción</a></li>
+        <li><a href="/collections/mantenimiento">Mantenimiento</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:{{ shop.phone | default: '5537983319' }}">{{ shop.phone | default: '55 3798 3319' }}</a></li>
+        <li><a href="mailto:{{ shop.email }}">{{ shop.email }}</a></li>
+        <li><a href="https://wa.link/vyvhhb" target="_blank">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos los derechos reservados.</span>
+    <div class="payment-icons">
+      <span class="payment-pill">Visa</span>
+      <span class="payment-pill">Mastercard</span>
+      <span class="payment-pill">Amex</span>
+      <span class="payment-pill">Efectivo</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-college {
+    print-color-adjust: exact;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "newsletter_text", "label": "Newsletter description", "default": "Tu nuevo espacio comienza con inspiración. Suscríbete y recibe ideas exclusivas, descuentos especiales y novedades de nuestros servicios." }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,81 @@
+<nav>
+  {% if section.settings.menu != blank and linklists[section.settings.menu] %}
+    {% for link in linklists[section.settings.menu].links %}
+      <a href="{{ link.url }}" {% if request.path == link.url or request.path contains link.url %}class="active"{% endif %}>{{ link.title }}</a>
+    {% endfor %}
+  {% else %}
+    <a href="{{ routes.root_url }}" {% if request.path == '/' %}class="active"{% endif %}>Inicio</a>
+    <a href="{{ routes.collections_url }}" {% if request.path contains '/collections/' %}class="active"{% endif %}>Proyectos</a>
+    <a href="/pages/servicios" {% if request.path == '/pages/servicios' %}class="active"{% endif %}>Servicios</a>
+    <a href="/pages/contacto" {% if request.path == '/pages/contacto' %}class="active"{% endif %}>Contacto</a>
+  {% endif %}
+</nav>
+
+{% schema %}
+{
+  "name": "Navigation",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu" }
+  ],
+  "presets": [
+    { "name": "Default", "category": "Navigation" }
+  ]
+}
+{% endschema %}
+<style>
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid rgba(160,82,45,0.15);
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 14px 0;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--dark);
+    font-weight: 400;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.3s;
+    text-decoration: none;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--terracota);
+    transition: width 0.3s;
+  }
+
+  nav a:hover {
+    color: var(--terracota);
+  }
+
+  nav a:hover::after,
+  nav a.active::after {
+    width: 100%;
+  }
+
+  nav a.active {
+    color: var(--terracota);
+  }
+
+  @media (max-width: 900px) {
+    nav {
+      gap: 24px;
+    }
+
+    nav a {
+      font-size: 9px;
+    }
+  }
+</style>

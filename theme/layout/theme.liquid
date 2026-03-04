@@ -1,0 +1,137 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <title>{{ page_title }}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="{{ page_description }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <!--- Facebook --->
+    <meta property="og:description" content="{{ page_description }}"/>
+    <meta property="og:image" content="https://{{ settings.share_image | image_url: width: 1200 }}"/>
+    <meta property="og:site_name" content="Alex Moss NY"/>
+    <meta property="og:title" content="{{ page_title }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ canonical_url }}"/>
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content=""/>
+    <meta name="twitter:description" content="{{ page_description }}"/>
+    <meta name="twitter:image" content="https://{{ settings.share_image | image_url: width: 1200 }}"/>
+    <meta name="twitter:site" content="{{ canonical_url }}"/>
+    <meta name="twitter:title" content="{{ page_title }}"/>
+
+    {%- if request.page_type == 'product' -%}
+        <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+        <meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
+    {%- endif -%}
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
+    {%- if settings.favicon != blank -%}
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | image_url: width: 32 }}"/>
+        <link rel="icon" type="image/png" sizes="57x57" href="{{ settings.favicon | image_url: width: 57 }}"/>
+        <link rel="icon" type="image/png" sizes="76x76" href="{{ settings.favicon | image_url: width: 76 }}"/>
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ settings.favicon | image_url: width: 96 }}"/>
+        <link rel="icon" type="image/png" sizes="128x128" href="{{ settings.favicon | image_url: width: 128 }}"/>
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ settings.favicon | image_url: width: 192 }}"/>
+
+        <link rel="icon" type="image/png" sizes="196x196" href="{{ settings.favicon | image_url: width: 196 }}"/>
+
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ settings.favicon | image_url: width: 120 }}"/>
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ settings.favicon | image_url: width: 152 }}"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | image_url: width: 180 }}"/>
+
+        <meta name="application-name" content="&nbsp;"/>
+        <meta name="msapplication-TileColor" content="#FFFFFF"/>
+        <meta name="msapplication-TileImage" content="{{ settings.favicon | image_url: width: 144 }}"/>
+        <meta name="msapplication-square70x70logo" content="{{ settings.favicon | image_url: width: 70 }}"/>
+        <meta name="msapplication-square150x150logo" content="{{ settings.favicon | image_url: width: 150 }}"/>
+        <meta name="msapplication-wide310x150logo" content="{{ settings.favicon | image_url: width: 310, height: 150 }}"/>
+        <meta name="msapplication-square310x310logo" content="{{ settings.favicon | image_url: width: 310 }}"/>
+    {%- endif -%}
+    {{ '_fonts.css' | asset_url | stylesheet_tag }}
+    {{ '_init.css' | asset_url | stylesheet_tag }}
+
+    <script>
+        let url = "https:{{ 'image-load.js' | asset_url }}"
+        if (!url.includes('http')) {
+            url = '{{ shop.url }}' + url;
+        }
+        const content = `importScripts( "${ url }" );`;
+        window.workerUrl = URL.createObjectURL( new Blob( [ content ], { type: "text/javascript" } ) );
+    </script>
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+</head>
+<body>
+<div class="global-backdrop" id="global-backdrop"></div>
+<div id="event-mask"></div>
+{% if settings.pencil_bar_message != blank %}
+    <div class="pencil-bar" id="pencil-bar">
+        <div class="c-32">
+            <a class="nav-btn" href="tel:{{ settings.pencil_bar_link_1 }}">{{ settings.pencil_bar_link_1 }}</a>
+            <div class="pencil-text">{{ settings.pencil_bar_message }}</div>
+            <a class="nav-btn" href="mailto:{{ settings.pencil_bar_link_2 }}">{{ settings.pencil_bar_link_2 }}</a>
+            <div class="pencil-marquee">
+                <div class="inner" data-dur="10" data-mobile-dur="15">
+                    <div class="group">
+                        <div>{{ settings.pencil_bar_message }}</div>
+                    </div>
+                    <div class="group" aria-hidden="true">
+                        <div>{{ settings.pencil_bar_message }}</div>
+                    </div>
+                    <div class="group">
+                        <div>{{ settings.pencil_bar_message }}</div>
+                    </div>
+                    <div class="group" aria-hidden="true">
+                        <div>{{ settings.pencil_bar_message }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+<div id="global-mask" class="global-mask"></div>
+{% render "mini-cart" %}
+{% render "header" %}
+<main id="main" role="main" data-nopopup="{{ settings.noshow_slugs }}">
+    {% if template.name == "index" %}
+        {% assign namespace = "home" %}
+    {% elsif template.name == "page" %}
+        {% if template.suffix %}
+            {% assign namespace = template.suffix %}
+        {% else %}
+            {% assign namespace = template.name %}
+        {% endif %}
+    {% else %}
+        {% if template %}
+            {% assign namespace = template.name %}
+        {% else %}
+            {% assign namespace = "giftship" %}
+        {% endif %}
+    {% endif %}
+    <div data-router-wrapper id="router-wrapper">
+        <div class="{{ template.name }} view-{{ namespace }}" data-router-view="{{ namespace }}" id="router-view">
+            {{ content_for_layout }}
+        </div>
+    </div>
+</main>
+{% unless template.name == 'password' %}
+    {% render "footer" %}
+{% endunless %}
+
+{% comment %}<img id="drag-cursor" src="data:image/jpeg;base64,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">{% endcomment %}
+{% comment %} {% render 'mobile-menu' %} {% endcomment %}
+
+{{ '_main.css' | asset_url | stylesheet_tag }}
+{% unless template.name == 'password' %}
+    {{ 'main.js' | asset_url | script_tag }}
+{% endunless %}
+
+{{ content_for_header }}
+</body>
+</html>
+

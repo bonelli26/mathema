@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero"
+    },
+    "projects": {
+      "type": "projects"
+    }
+  },
+  "order": [
+    "hero",
+    "projects"
+  ]
+}

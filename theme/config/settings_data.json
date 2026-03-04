@@ -1,0 +1,53 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "favicon": "shopify://shop_images/q-fav_c524cf68-771d-4197-a819-fe22ebe3a593.png",
+    "email": "contacto@quentin.com",
+    "telefono": "+52 55 2715 9042",
+    "klaviyo_list_id": "",
+    "success_text": "Éxito",
+    "header_copy_1": "Nosotros",
+    "header_link_1": "shopify://pages/acerca-nosotros",
+    "header_copy_2": "Tienda",
+    "header_link_2": "shopify://collections/cafe-de-temporada",
+    "header_copy_3": "Mayoreo",
+    "header_link_3": "shopify://collections/mayoreo",
+    "header_copy_4": "Cafeterías",
+    "header_link_4": "shopify://pages/cafeterias",
+    "header_copy_5": "Contacto",
+    "header_link_5": "shopify://pages/contacto",
+    "instagram_url": "https://www.instagram.com/quentincafemx/",
+    "facebook_url": "https://www.facebook.com/quentincafemx/",
+    "tiktok_url": "https://www.tiktok.com/discover/quentin-cafe-cdmx",
+    "pencil_bar_message": "",
+    "sitio_one_label": "Nosotros",
+    "sitio_one_url": "/pages/acerca-nosotros",
+    "sitio_two_label": "Mayoreo",
+    "sitio_two_url": "/collections/mayoreo",
+    "sitio_three_label": "Cafeterías",
+    "sitio_three_url": "/pages/cafeterias",
+    "coffee_one_label": "Bolivia",
+    "coffee_one_url": "/collections/cafe-de-temporada?origen=bolivia",
+    "coffee_two_label": "Colombia",
+    "coffee_two_url": "/collections/cafe-de-temporada?origen=colombia",
+    "coffee_three_label": "Mexico",
+    "coffee_three_url": "/collections/cafe-de-temporada?origen=mexico",
+    "privacy": "Privacy",
+    "privacy_url": "shopify://pages/politicas-privacidad",
+    "terms": "T&C",
+    "terms_url": "shopify://pages/terminos-condiciones",
+    "faqs": "Preguntas frecuentes",
+    "faqs_url": "shopify://pages/preguntas-frecuentes",
+    "email_capture_title": "Latest from Alex Moss",
+    "email_capture_copy": "Be the first to know about our new designs, special events, and much more.",
+    "content_for_index": []
+  }
+}

@@ -1,0 +1,62 @@
+/*
+	Global Storage Object
+-------------------------------------------------- */
+
+export const domStorage = {
+	"header": document.getElementById("header"),
+	"footer": document.getElementById("footer"),
+	"headerLinks": document.querySelectorAll(".logo, .expand-hitbox"),
+	"pageTransition": document.getElementById("page-transition"),
+	"pageOverlay": document.getElementById("page-overlay"),
+	"pageBackground": document.getElementById("page-background"),
+	"promoModal": document.getElementById("promo-modal"),
+	"navBar": document.getElementById("navbar"),
+	"pencilBar": document.getElementById("pencil-bar"),
+	"dragCursor": document.getElementById("drag-cursor"),
+	"navBarBackdrop": document.getElementById("navbar-backdrop"),
+	"asideBackdrop": document.getElementById("aside-backdrop"),
+	"globalMask": document.getElementById("global-mask"),
+	"eventMask": document.getElementById("event-mask"),
+	"routerWrapper": document.getElementById("router-wrapper"),
+	"routerView": document.getElementById("router-view"),
+	"mainEl": document.getElementById("main"),
+	"miniCart": document.getElementById("mini-cart"),
+	"globalBackdrop": document.getElementById("global-backdrop"),
+	"miniCartTotal": document.getElementById("mini-cart-total"),
+	"miniCartProductsWrapper": document.getElementById("products-wrapper"),
+	"miniCartEmptyWrapper": document.getElementById("empty-wrapper"),
+	"cartCountEls": document.querySelectorAll(".cart-count"),
+	"openMobileMenu": ()=>{},
+	"closeMobileMenu": ()=>{},
+	"resetMobileMenu": ()=>{}
+}
+domStorage.checkoutBtn = domStorage.miniCart.querySelector("#checkout-btn")
+domStorage.miniCartCover = domStorage.miniCart.querySelector(".cart-cover")
+export const globalStorage = {
+	"assetPath": (document.getElementById("site-data") && window.location.host.indexOf("localhost") < 0) ? document.getElementById("site-data").getAttribute("data-asset-path") : "/assets/code/",
+	"firstLoad": true,
+	"headerColor": "dark",
+	"isMobile": false,
+	"mouseEnterContext": false,
+	"loadedJudgeCode": false,
+	"noBlendList": ['blog', 'utility', '404'],
+	"isSafari": (navigator.userAgent.indexOf("Safari") > -1 && navigator.userAgent.indexOf("Chrome") === -1) ? true : false,
+	"isChrome": (navigator.userAgent.indexOf("Chrome") > -1) ? true : false,
+	"isFirefox": (navigator.userAgent.indexOf("Firefox") > -1) ? true : false,
+	"windowHeight": "",
+	"windowWidth": "",
+	"transitionFinished": false,
+	"pencilBarClosed": false,
+	"transitionedOnce": 0,
+	"pencilBarHeight": domStorage.pencilBar ? domStorage.pencilBar.offsetHeight : 0,
+	"queryParams": {},
+	"referrer": "",
+	"reducedMotion": window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+	"headerShowing": true,
+	"seenPromoModal": false,
+	"marqueeData": [],
+	"pencilMarquee": false,
+	"escapeCloseFuncs": [],
+	"reviewOverviews": [],
+	"allReviewsOverview": "",
+};

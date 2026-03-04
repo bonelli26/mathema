@@ -1,0 +1,24 @@
+!.gitignore
+
+# Compiled
+compiled
+
+# Node Package Manager
+node_modules
+
+# Vagrant
+bin
+.vagrant
+
+.idea/
+composer.phar
+composer.lock
+npm-debug.log
+
+# Our Build
+build/
+!build/config.yml
+
+# Stray Files
+.DS_Store
+.phplint-cache

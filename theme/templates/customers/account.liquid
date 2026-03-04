@@ -1,0 +1,220 @@
+
+
+<div class="logged-in account-global tab-set" data-tabs="account" data-triggers="account-trigger">
+  <div class="logged-in-header">
+    <h1 class="account-header">Account</h1>
+    <div class="tab-triggers">
+      <button class="trigger expand-hitbox active" data-trigger="account-trigger">wishlist</button>
+      <button class="trigger expand-hitbox" data-trigger="account-trigger">order history</button>
+      <button class="trigger expand-hitbox" data-trigger="account-trigger">account</button>
+    </div>
+    <a class="log-out" href="{{ routes.account_logout_url }}" data-router-disabled>
+      <span>{{ 'customer.log_out' | t }}</span>
+    </a>
+  </div>
+
+
+  <div class="collection-grid" data-tab="account">
+    <div class="grid product-grid">
+        {% for thisProduct in collections['cathedral-of-dreams'].products %}
+            {% render 'product-card', product: thisProduct, extraClass: 'wishlist-product' %}
+        {% endfor %}
+        <div class="product-card dummy"></div>
+        <div class="product-card dummy"></div>
+        <div class="product-card dummy"></div>
+    </div>
+  </div>
+
+  <div class="order-history" data-tab="account">
+    <h2 class="account-title">{{ 'customer.orders.title' | t }}</h2>
+
+    {% paginate customer.orders by 20 %}
+      {%- if customer.orders.size > 0 -%}
+        <table role="table" class="order-history">
+          <caption class="visually-hidden" style="display: none;">{{ 'customer.orders.title' | t }}</caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th id="ColumnOrder" scope="col" role="columnheader">{{ 'customer.orders.order_number' | t }}</th>
+              <th id="ColumnDate" scope="col" role="columnheader">{{ 'customer.orders.date' | t }}</th>
+              <th id="ColumnPayment" scope="col" role="columnheader">{{ 'customer.orders.payment_status' | t }}</th>
+              <th id="ColumnFulfillment" scope="col" role="columnheader">{{ 'customer.orders.fulfillment_status' | t }}</th>
+              <th id="ColumnTotal" scope="col" role="columnheader">{{ 'customer.orders.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            {%- for order in customer.orders -%}
+              <tr role="row">
+                <td
+                  id="RowOrder"
+                  role="cell"
+                  headers="ColumnOrder"
+                  data-label="{{ 'customer.orders.order_number' | t }}"
+                >
+                  <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
+                    {{ order.name }}
+                  </a>
+
+                </td>
+                <td headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
+                  {{ order.created_at | time_tag: format: 'date' }}
+                </td>
+                <td headers="RowOrder ColumnPayment" role="cell" data-label="{{ 'customer.orders.payment_status' | t }}">
+                  {{ order.financial_status_label }}
+                </td>
+                <td headers="RowOrder ColumnFulfillment" role="cell" data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+                  {{ order.fulfillment_status_label }}
+                </td>
+                <td headers="RowOrder ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}">
+                  {{ order.total_price | money_with_currency }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      {%- else -%}
+        <p>{{ 'customer.orders.none' | t }}</p>
+      {%- endif -%}
+
+      {%- if paginate.pages > 1 -%}
+        {%- if paginate.parts.size > 0 -%}
+            <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+              <ul role="list">
+              {%- if paginate.previous -%}
+                <li>
+                  <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">
+                    <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                    </svg>
+                  </a>
+                </li>
+              {%- endif -%}
+
+              {%- for part in paginate.parts -%}
+                <li>
+                  {%- if part.is_link -%}
+                    <a href="{{ part.url }}" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</a>
+                  {%- else -%}
+                    {%- if part.title == paginate.current_page -%}
+                      <span aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</span>
+                    {%- else -%}
+                      <span>{{ part.title }}</span>
+                    {%- endif -%}
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+
+              {%- if paginate.next -%}
+                <li>
+                  <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}" >
+                    <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                    </svg>
+                  </a>
+                </li>
+              {%- endif -%}
+              </ul>
+            </nav>
+        {%- endif -%}
+      {%- endif -%}
+    {% endpaginate %}
+  </div>
+
+  <div class="account-info" data-tab="account">
+    <h2 class="account-title">{{ 'customer.account.details' | t }}</h2>
+
+    <div class="circle-inputs">
+      <span>Title</span>
+      <div class="input-wrapper">
+        <label class="container">Mr
+          <input type="radio" checked="checked" name="radio">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Mrs
+          <input type="radio" checked="unchecked" name="radio">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Miss
+          <input type="radio" checked="unchecked" name="radio">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <div class="input-block">
+      <input
+        type="text"
+        name="customer[first_name]"
+        id="RegisterForm-FirstName"
+        {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
+        autocomplete="given-name"
+        placeholder="{{ customer.first_name}}"
+      >     
+    </div>
+    <div class="input-block">
+      <input
+        type="text"
+        name="customer[last_name]"
+        id="RegisterForm-LastName"
+        {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
+        autocomplete="family-name"
+        placeholder="{{ customer.last_name }}"
+      >      
+    </div>
+    <div class="birthday">
+      <span>date of birth</span>
+      <input placeholder="01" type="number" max="31" min="1">
+      <input placeholder="25" type="number" max="31" min="1">
+      <input placeholder="1998" type="number" max="2045" min="1920">
+    </div>
+    <div class="input-block">
+      <input
+        type="email"
+        name="customer[email]"
+        id="RegisterForm-email"
+        {% if form.email %} value="{{ form.email }}"{% endif %}
+        spellcheck="false"
+        autocapitalize="off"
+        autocomplete="email"
+        aria-required="true"
+        {% if form.errors contains 'email' %}
+          aria-invalid="true"
+          aria-describedby="RegisterForm-email-error"
+        {% endif %}
+        placeholder="{{ customer.email }}"
+      >      
+    </div>
+
+    <div class="input-block">
+      <input
+        type="email"
+        name="confirm[email]"
+        id="RegisterForm-email"
+        {% if form.email %} value="{{ form.email }}"{% endif %}
+        spellcheck="false"
+        autocapitalize="off"
+        autocomplete="email"
+        aria-required="true"
+        {% if form.errors contains 'email' %}
+          aria-invalid="true"
+          aria-describedby="RegisterForm-email-error"
+        {% endif %}
+        placeholder="Confirm email"
+      >      
+    </div>
+
+    <div class="agree-input">      
+      <div class="input-wrapper">
+        <label>
+          <input type="radio" checked="checked" name="radio">
+          <span class="checkmark"></span>
+          By creating your account you agree to our terms of services and privacy policy. We handle your personal information with the highest care and respect your privacy.
+        </label>        
+      </div>
+    </div>
+
+    <a class="btn" href="{{ routes.account_addresses_url }}">
+      {{ 'customer.account.view_addresses' | t }} <span class="address-count"> ({{ customer.addresses_count }}) </span>
+    </a>
+  </div>
+
+
+</div>
+

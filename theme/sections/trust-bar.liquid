@@ -1,0 +1,38 @@
+<div class="trust">
+  {% for block in section.blocks %}
+    <div class="trust-item">
+      {% if block.settings.icon != blank %}
+        <div class="trust-icon">{{ block.settings.icon }}</div>
+      {% endif %}
+      <div>
+        {% if block.settings.label != blank %}
+          <span class="trust-label">{{ block.settings.label }}</span>
+        {% endif %}
+        {% if block.settings.text != blank %}
+          <span class="trust-text">{{ block.settings.text }}</span>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "textarea", "id": "icon", "label": "SVG icon HTML" },
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "text", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Default", "category": "Trust" }
+  ]
+}
+{% endschema %}

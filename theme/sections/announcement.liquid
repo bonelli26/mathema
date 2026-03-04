@@ -1,0 +1,16 @@
+<!-- Announcement Bar -->
+<div class="announcement">
+  {{ section.settings.text }}
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Announcement text", "default": "✦ Agenda una asesoría — L-V 10am a 6pm · {{ shop.email | default: 'mathema@mathemaestudio.com' }} ✦" }
+  ],
+  "presets": [
+    { "name": "Default", "category": "Announcement" }
+  ]
+}
+{% endschema %}

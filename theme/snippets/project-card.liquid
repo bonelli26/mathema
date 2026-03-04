@@ -1,0 +1,100 @@
+<div class="project-card" onclick="location.href='{{ product.url }}';" style="cursor:pointer;">
+  <div class="project-image">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}" loading="lazy">
+    {% endif %}
+    <div class="project-overlay">
+      <h3 class="project-title">{{ product.title }}</h3>
+    </div>
+  </div>
+  <div class="project-info">
+    {% if product.metafields.custom.project_category %}
+      <span class="project-tag">{{ product.metafields.custom.project_category }}</span>
+    {% endif %}
+    <p class="project-desc">{{ product.description | strip_html | truncatewords: 20 }}</p>
+    <a href="{{ product.url }}" class="project-link">Descubre el proyecto →</a>
+  </div>
+</div>
+
+<style>
+  .project-card {
+    background: white;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+
+  .project-image {
+    position: relative;
+    aspect-ratio: 1.2 / 1;
+    overflow: hidden;
+    background: var(--cream);
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+
+  .project-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(160, 82, 45, 0.85);
+    display: flex;
+    align-items: flex-end;
+    padding: 32px;
+  }
+
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--cream);
+    margin: 0;
+  }
+
+  .project-info {
+    padding: 24px;
+  }
+
+  .project-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--terracota);
+    margin-bottom: 8px;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin: 8px 0 16px 0;
+  }
+
+  .project-link {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--terracota);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .project-link:hover {
+    color: var(--dark);
+  }
+
+  @media (max-width: 768px) {
+    .project-title {
+      font-size: 24px;
+    }
+  }
+</style>

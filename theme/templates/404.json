@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "bg": "shopify:\/\/shop_images\/Group_137.png",
+        "text": "Sorry, we can’t find the page you’re looking for. Try heading back home.",
+        "button_url": "\/",
+        "button_text": "Home"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

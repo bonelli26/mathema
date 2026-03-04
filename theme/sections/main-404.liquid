@@ -1,0 +1,34 @@
+<div class="template-404 mw">
+  <img class="preload-critical" {% if section.settings.bg.alt %} alt="{{ section.settings.bg.alt }}"{% endif %} data-preload-desktop="https:{{ section.settings.bg | image_url }}" data-preload-mobile="https:{{ section.settings.bg | image_url }}">
+  <p>{{ section.settings.text }}</p>
+  <a class="btn white" href="{{ section.settings.button_url }}" class="">{{ section.settings.button_text }}</a>
+</div>
+
+{% schema %}
+{
+  "name": "Main 404",
+  "tag": "section",
+  "settings": [
+    {
+      "id": "bg",
+      "type": "image_picker",
+      "label": "Header"
+    },
+    {
+      "id": "text",
+      "type": "text",
+      "label": "Text"
+    },
+    {
+      "id": "button_url",
+      "type": "text",
+      "label": "Button URL"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button text"
+    }
+  ]
+}
+{% endschema %}

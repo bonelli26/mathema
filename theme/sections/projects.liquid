@@ -1,0 +1,67 @@
+<section class="latest">
+  <div class="latest-header">
+    {% if section.settings.section_label != blank %}
+      <p class="section-label">{{ section.settings.section_label }}</p>
+    {% endif %}
+    {% if section.settings.section_title != blank %}
+      <h2 class="section-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+    {% if section.settings.section_copy != blank %}
+      <p>{{ section.settings.section_copy }}</p>
+    {% endif %}
+  </div>
+
+  {% for block in section.blocks %}
+    <div class="project-feature">
+      <div class="project-img">
+        {% if block.settings.image %}
+          <img src="{{ block.settings.image | img_url: '900x' }}" alt="{{ block.settings.alt_text | escape }}" />
+        {% endif %}
+      </div>
+      <div class="project-info">
+        {% if block.settings.tag != blank %}
+          <p class="project-tag">{{ block.settings.tag }}</p>
+        {% endif %}
+        {% if block.settings.name != blank %}
+          <h3 class="project-name">{{ block.settings.name | replace: "\n", "<br/>" }}</h3>
+        {% endif %}
+        {% if block.settings.description != blank %}
+          <p class="project-desc">{{ block.settings.description }}</p>
+        {% endif %}
+        {% if block.settings.link_url != blank %}
+          <a href="{{ block.settings.link_url }}" class="btn-outline">{{ block.settings.link_text | default: 'Ver más' }}</a>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+
+</section>
+
+{% schema %}
+{
+  "name": "Projects",
+  "settings": [
+    { "type": "text", "id": "section_label", "label": "Label", "default": "Portafolio" },
+    { "type": "text", "id": "section_title", "label": "Title", "default": "¡Lo último en Mathema! 🪩" },
+    { "type": "textarea", "id": "section_copy", "label": "Copy" }
+  ],
+  "blocks": [
+    {
+      "type": "project",
+      "name": "Project",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "alt_text", "label": "Image caption" },
+        { "type": "text", "id": "tag", "label": "Tag line" },
+        { "type": "text", "id": "name", "label": "Name (use \n for line break)" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "link_text", "label": "Link text", "default": "Ver más" },
+        { "type": "text", "id": "link_url", "label": "Link URL" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Default", "category": "Projects" }
+  ]
+}
+{% endschema %}
